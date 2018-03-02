@@ -14,10 +14,14 @@ public class ScoreHistogram implements IStatistic {
     }
 
     public void printResult() {
-        Collections.sort(scores);
         Set<Integer> uniqueSet = new HashSet<>(scores);
+        Map<Integer, Integer> histMap = new TreeMap<>();
         for (Integer temp : uniqueSet) {
-            System.out.println(temp + ": " + Collections.frequency(scores, temp));
+            histMap.put(temp,Collections.frequency(scores, temp));
+        }
+        
+        for(Map.Entry<Integer, Integer> entry : histMap.entrySet()) {
+        	System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
 
     }
